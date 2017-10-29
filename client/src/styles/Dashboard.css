@@ -1,0 +1,42 @@
+.create{
+  background-color: #5cbd1c;
+  font-weight: bold;
+  padding-left: 30px;
+  color: white;
+  padding-right: 30px;
+}
+
+.tooltip{
+  color: black;
+}
+
+.distance{
+  font-size: 17px;
+}
+
+.online{
+  text-align: center;
+  border-style: solid;
+  border-width: 2px;
+  width: 150px;
+  display: block;
+  margin: auto;
+}
+
+.game-icon{
+  width: 120%;
+}
+
+.game-name{
+  color: red;
+  font-weight: bold;
+}
+
+.game-descr{
+  font-size: 12px;
+}
+
+.komsel-pic{
+  width: 150px;
+  height: 150px;
+}

@@ -1,0 +1,108 @@
+.navtext{
+  color: white;
+}
+
+.rewards{
+  margin-top: 20px;
+  width: 100%;
+}
+
+.dropdown-menu{
+  width: 500px;
+}
+
+.dropdown-menu ul li a{
+  text-align: center;
+  font-weight: bold;
+}
+
+.activity-pic{
+  width: 150px;
+}
+
+.game-modal{
+  width: 100%;
+}
+
+.img-circle{
+  padding: 0;
+  margin-top: 8px;
+  width: 35px;
+  height: 35px;
+}
+
+.img-rounded{
+  padding: 0;
+  margin-top: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.komsel{
+  width: 150px;
+}
+
+.tooltip-detail{
+  padding: auto;
+  margin: auto;
+  text-align: center;
+  display: block;
+}
+
+.leader{
+  color:red;
+  text-align: center;
+  padding: auto;
+  margin: auto;
+  text-align: center;
+  display: block;
+}
+
+.navbar-nav{
+  padding-top: 7px;
+  margin-left: 17px;
+  font-size: 18px;
+  font-family: "Ubuntu",Tahoma,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: bold;
+}
+
+.navbar-brand {
+  padding: 0px;
+}
+
+.navbar-brand>img {
+  height: 60px;
+  padding: 3px;
+  width: auto;
+}
+
+.navbar-inverse {
+  background-color: #da291d;
+  padding: 10px;
+  margin: 0;
+}
+
+.col-md-9{
+  padding-right: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.col-md-3{
+  margin: 0;
+  padding: 0;
+  margin-right: 0;
+}
+
+.leaflet-container{
+  height: 1090px;
+  width: 100%;
+}
+
+.leaflet-map-pane {
+  z-index: 2 !important;
+}
+
+.leaflet-google-layer {
+  z-index: 1 !important;
+}
