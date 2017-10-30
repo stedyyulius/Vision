@@ -9,17 +9,17 @@ class Facebook extends Component{
   constructor(props){
     super(props)
     this.state={}
-  }  
-  
-  next(){
-    this.props.isCheck(true)   
   }
-  
+
+  next(){
+    this.props.isCheck(true)
+  }
+
   responseFacebook(response) {
      console.log(response);
      cookie.save('user',response)
    }
-   
+
   render(){
     return(
       <div onClick={()=>this.next()}>
@@ -29,6 +29,7 @@ class Facebook extends Component{
           fields="name,email,picture"
           scope="public_profile,user_friends,user_actions.books,user_birthday"
           callback={(e)=>this.responseFacebook(e)}
+          onClick={()=>setTimeout(()=>{window.location = '/'},800)}
         />
       </div>
     )
@@ -45,6 +46,6 @@ const mapDispatchToProps = (dispatch)=>{
   return{
     isCheck: (status) => dispatch(isCheck(status))
     }
-  }  
+  }
 
 export default connect(null,mapDispatchToProps)(Facebook)

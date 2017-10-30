@@ -26,6 +26,8 @@ var Me = icon({
     shadowAnchor: [22, 94]
 });
 
+const startLocation = [-6.260708 + 0.0006, 106.781617 - 0.0005]
+
 class TorchMap extends Component {
   constructor(props){
     super(props)
@@ -36,7 +38,7 @@ class TorchMap extends Component {
       current: [-6.260708, 106.781617]
     }
   }
-  
+
   async componentWillReceiveProps(){
     let waitRedirect = this.props.redirect !== null
     await waitRedirect
@@ -92,7 +94,7 @@ class TorchMap extends Component {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           <Marker
-            position={[+this.state.current[0],+this.state.current[1]]}
+            position={[startLocation[0],startLocation[1]]}
             icon={Me}>
          </Marker>
          <div className="tooltip-detail">

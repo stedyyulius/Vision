@@ -10,15 +10,14 @@ class Auth extends Component{
     super(props)
     this.state={}
   }
-  
+
   componentDidMount(){
-    console.log(this.props.isCheck)
   }
-  
+
   login(){
     window.location = '/'
   }
-  
+
   render(){
     return(
       <div className="body">
@@ -30,29 +29,9 @@ class Auth extends Component{
             : <img className="sub-icon col-md-12" src="https://i.imgur.com/Gj20pbL.png"/>
           }
         </div>
-        {(!this.props.isCheck)
-          ? <div className="title">
-              <Facebook />
-            </div>
-          : <div>
-            <div className="input form-group">
-               <h6><b>Nama Gereja</b></h6>
-               <input type="text" className="form-control" placeholder="Nama Gereja" id="Nama Gereja" />
-               <i className="fa fa-user"></i>
-             </div>
-             <div className="input form-group">
-                <h6><b>No Handphone</b></h6>
-                <input type="text" className="form-control" placeholder="No Handphone" id="No Handphone" />
-                <i className="fa fa-user"></i>
-              </div>
-              <div className="input form-group">
-                 <h6><b>Interest</b></h6>
-                 <input type="text" className="form-control" placeholder="Interest" id="Interest" />
-                 <i className="fa fa-user"></i>
-               </div>
-               <button type="button" className="log-btn" onClick={()=> this.login()}>Submit</button>
-            </div>
-        }
+        <div className="title">
+          <Facebook />
+        </div>
         </div>
       </div>
     )
