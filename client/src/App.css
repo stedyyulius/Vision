@@ -2,6 +2,10 @@
   color: white;
 }
 
+.logo{
+  width: 20%;
+}
+
 .rewards{
   margin-top: 20px;
   width: 100%;
@@ -76,27 +80,31 @@
   width: auto;
 }
 
+.navbar-collapse div li{
+  display: inline-block;
+  margin-left: 17px;
+  margin-top: 13px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.navbar-collapse div li img{
+  margin-top: -2px;
+}
+
 .navbar-inverse {
-  background-color: #da291d;
   padding: 10px;
   margin: 0;
-}
-
-.col-md-9{
-  padding-right: 0;
-  padding: 0;
-  margin: 0;
-}
-
-.col-md-3{
-  margin: 0;
-  padding: 0;
-  margin-right: 0;
+  position: fixed;
+  z-index: 1;
+  width: 1442px;
 }
 
 .leaflet-container{
-  height: 1090px;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
+  z-index: 0;
 }
 
 .leaflet-map-pane {

@@ -27,6 +27,7 @@ var Me = icon({
 });
 
 const startLocation = [-6.260708 + 0.0006, 106.781617 - 0.0005]
+const vr = `http://localhost:8081/vr`
 
 class TorchMap extends Component {
   constructor(props){
@@ -132,7 +133,7 @@ class TorchMap extends Component {
                         onClick={()=> this.requestJoin(k._id,i)}>
                         Join
                         </button>
-                        <button className="btn btn-primary">
+                        <button className="btn btn-primary" onClick={()=> window.open(vr)}>
                         Visit Vr
                         </button>
                         </div>

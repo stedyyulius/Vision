@@ -7,6 +7,7 @@ import isActive from './isActivity'
 import isKomsel from './isKomsel'
 import OneData from './onedata'
 import redirect from './redirect'
+import repos from './repos'
 
 export default combineReducers({
   isCheck: isCheck,
@@ -15,5 +16,6 @@ export default combineReducers({
   isActive: isActive,
   isKomsel: isKomsel,
   onedata: OneData,
-  redirect: redirect
+  redirect: redirect,
+  repos: repos
 })

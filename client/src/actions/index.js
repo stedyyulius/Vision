@@ -66,6 +66,19 @@ const redirect = (lat,lng) =>{
   }
 }
 
+const getRepos = (username) =>{
+  return(dispatch)=>{
+    axios.get(`https://api.github.com/users/${username}/repos?sort=created`)
+    .then(res=>{
+      console.log(res);
+      dispatch({
+        type: 'Repos',
+        payload: res.data.slice(0,5)
+      })
+    })
+  }
+}
+
 
 export{
   isCheck,
@@ -74,5 +87,6 @@ export{
   getOneData,
   isActivity,
   isKomsel,
-  redirect  
+  redirect,
+  getRepos
 }

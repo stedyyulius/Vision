@@ -6,8 +6,19 @@
   padding-right: 30px;
 }
 
+.pushed_at{
+  margin-top: 10px;
+  color: gray;
+  font-size: 12px;
+}
+
 .tooltip{
   color: black;
+}
+
+.list-group{
+  min-height: 100vh;
+  background-color: white;
 }
 
 .distance{

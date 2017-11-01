@@ -62,11 +62,10 @@ class Main extends Component {
   render() {
     return (
       <div className="App">
-        <div>
           <nav className="navbar navbar-inverse">
             <div className="container-fluid">
               <div className="navbar-header">
-                <a className="navbar-brand" href="#"><img src="http://www.onlygfx.com/wp-content/uploads/2016/07/eye-logo-2.png" alt="TORCH" /></a>
+                <a className="navbar-brand" href="#"><img className="logo" src="http://www.iconsdb.com/icons/download/white/eye-3-512.png" alt="TORCH" /></a>
               </div>
               <div className="navbar-collapse collapse">
                 <ul className="nav navbar-nav">
@@ -103,15 +102,14 @@ class Main extends Component {
                     </ul>
                   </li>
                 </ul>
-                <ul className="nav navbar-nav pull-right">
+                <div className="pull-right">
                   <li><img src={cookie.load('user').picture.data.url} className="img-circle" alt="Cinque Terre" /></li>
                   <li><a><span className="navtext">{cookie.load('user').name}</span></a></li>
                   <li><a onClick={()=> this.logout()}><span className="navtext">Logout</span></a></li>
-                </ul>
+                </div>
               </div>
             </div>
           </nav>
-        </div>
         <div className="row">
           <div className="col-md-9">
             <TorchMap />

@@ -70,7 +70,7 @@ class AddGame extends React.Component {
 
   render () {
     return (
-<div className="modal" id="AddGame" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div className="modal fade" id="AddGame" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div className="modal-dialog">
   <div className="modal-content">
     <div className="modal-header">
@@ -80,14 +80,14 @@ class AddGame extends React.Component {
     <div className="modal-body">
       <form>
         <div className="form-group">
-          <select defaultValue="Select Game Type" onChange={(e)=>this.setState({isOnline: e.target.value})} style={{width:'100%',padding:'15px',color:'gray'}}>
-            <option disabled>Select Game Type</option>
+          <select defaultValue="Select Event Type" onChange={(e)=>this.setState({isOnline: e.target.value})} style={{width:'100%',padding:'15px',color:'gray'}}>
+            <option disabled>Select Event Type</option>
             <option value={false}>Meetup</option>
             <option value={true}>Hackhaton</option>
           </select>
         </div>
 <div className="form-group">
-  <label htmlFor="exampleInputEmail1">Activity Name</label>
+  <label htmlFor="exampleInputEmail1">Event Name</label>
   <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Activity Name"
   onChange={(e)=> this.setState({name: e.target.value})} />
 </div>
