@@ -1,5 +1,5 @@
 .navtext{
-  color: black;
+  color: white;
 }
 
 .navbar-header{
@@ -93,14 +93,13 @@
   display: inline-block;
   margin-top: 10px;
   margin-left: 10px;
-  color: white;
+  color: black;
   font-size: 18px;
   font-weight: bold;
 }
 
 .navbar-collapse div li img{
   margin-top: -10px;
-  margin-left: 60px;
 }
 
 .navbar-inverse {
@@ -108,7 +107,7 @@
   margin: 0;
   position: fixed;
   z-index: 1;
-  background-color: white;
+  background-color: black;
 }
 
 .leaflet-container{
