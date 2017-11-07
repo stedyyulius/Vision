@@ -1,17 +1,20 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-let achievementSchema = new Schema ({
-  _komsel: {type: Schema.Types.ObjectId, ref: 'Komsel'},
-  description: String,
-  title: String,
-  createdDate: {type:Date, default: Date.now}
-  // name: String,
-  // tabelUsed: String,
-  // row: String,
-  // number: Number,
-  // poinEarned: Number,
-  // descr: String //anggota komsel nambah, jumlah game played, game won, game participated
-})
 
+let achievementSchema = new Schema({
+  poin: {type: Number, default: 0},
+  descr: {type: String, required: [true, '{PATH} must be filled']},
+  title: {type: String, required: [true, '{PATH} must be filled']},
+  unlock_num: {type: Number, required: [true, '{PATH} must be filled']},
+  unlock_desc: {
+    type: String,
+    required: [true, '{PATH} must be filled'],
+    enum: {
+      values: ['github', 'meetup', 'hackathon'],
+      message: `{PATH} should be [github | meetup | hackathon]`
+    }
+  },
+  image: {type: String, required: [true, '{PATH} must be filled']}
+})
 let Achievement = mongoose.model('Achievement', achievementSchema)
 module.exports = Achievement

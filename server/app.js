@@ -4,50 +4,36 @@ const app = require('express')()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const graphQLHTTP = require('express-graphql')
+const { buildSchema } = require('graphql')
 
-const port = process.env.PORT || 3000
-let index = require('./routes/index')
-let komsel = require('./routes/komsel')
-let church = require('./routes/church')
-let user = require('./routes/user')
-let achievement = require('./routes/achievement')
-let staff = require('./routes/staff')
-let game = require('./routes/game')
-let badge = require('./routes/badge')
-let room = require('./routes/room')
-let deck = require('./routes/deck')
-let request = require('./routes/request')
-// let requestExit = require('./routes/requestExit')
-let reward = require('./routes/reward')
+const appSchema = require('./schema/schema')
+const cron = require('./cron/index')
+const port = process.env.PORT || 4000
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
-
 app.use(cors())
 
-app.use('/', index)
-app.use('/user', user)
-app.use('/achievement', achievement)
-app.use('/staff', staff)
-app.use('/game', game)
-app.use('/badge', badge)
-app.use('/komsel', komsel)
-app.use('/church', church)
-app.use('/room', room)
-app.use('/deck', deck)
-app.use('/request', request)
-app.use('/reward', reward)
+app.use('/graphql', graphQLHTTP (req => ({
+  schema: appSchema,
+  graphiql: true
+})))
 
-let envi = app.settings.env || 'development'
+app.use('/cron', cron.init)
+
+let env = app.settings.env || 'dev'
 
 let db_config = {
-  // 'development': 'mongodb://localhost/torch'
-  'development': "mongodb://pdvega:1234@cluster0-shard-00-00-sftdy.mongodb.net:27017,cluster0-shard-00-01-sftdy.mongodb.net:27017,cluster0-shard-00-02-sftdy.mongodb.net:27017/torch?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin"
+  dev: 'mongodb://localhost/vision',
+  prod: `mongodb://rumah360:${process.env.ATLAS_PASS}@room360-shard-00-00-g8m3k.mongodb.net:27017,room360-shard-00-01-g8m3k.mongodb.net:27017,room360-shard-00-02-g8m3k.mongodb.net:27017/vision?ssl=true&replicaSet=room360-shard-0&authSource=admin`
 }
 
-mongoose.connect(db_config[envi],(err,res) => {
-  console.log(db_config[envi])
-  console.log(err?err:'Berhasil connect ke db '+db_config[envi])
+console.log(db_config[env])
+
+mongoose.connect(db_config[env],(err,res)=>{
+  console.log(db_config[env])
+  console.log(err?err:'Berhasil connect ke db '+db_config[env]);
 })
 
 app.set('port', port)

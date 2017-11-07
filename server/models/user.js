@@ -1,55 +1,57 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-let helper = require('../helpers/login')
-let userSchema = new Schema ({
-  profile_picture: String,
-  // email: {
-  //   type: String,
-  //   required: [true, '{PATH} must be filled'],
-  //   validate: {
-  //     validator: function(val) {return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/gi.test(val)},
-  //     message: 'invalid {PATH} format'
-  //   },
-  //   unique: true,
-  //   lowercase: true
-  // },
-  // password: {
-  //   type: String,
-  //   required: [true, '{PATH} must be filled'],
-  //   validate: {
-  //     validator: function(val){ return /.{8,20}/.test(val)},
-  //     message: `{PATH}'s length must be between 8 and 20 char`
-  //   }
-  // },
-  name: {type: String, required:[true, '{PATH} must be filled']},
-  // phone: {
-  //   type: String,
-  //   validate: {
-  //     validator: function(val){ return /^\+[0-9]{10,32}/gi.test(val) },
-  //     message: `{PATH} must be between 10 and 32 char length and starts with +`
-  //   }
-  // },
-  poin: { type: Number, default: 0 },
-  komsel : [{
-    _komsel: {type: Schema.Types.ObjectId, ref: 'Komsel'},
-    role: {
-      type: String,
-      lowercase: true,
-      enum: {
-        values: ['member', 'leader'],
-        message: `{PATH} should be [member | leader]`
-      }
-    },
-    joinDate: {type: Date, default: Date.now},
-  }]
-})
+/*
+  achievement dia liat tuh pas di date udah ada 10 ato belum kalo belum maka ditambahin ke poin
+  kalo ga ya udah ga ketambahan....
 
-userSchema.pre('save', function(next) {
-  if (this.isModified('password'))
-    this._doc.password = helper.hashPassword(this._doc.password)
-  next()
+  repo dari push date
+*/
+
+let achievementHistorySchema = new Schema({
+  _user: {type: Schema.Types.ObjectId, ref: 'User' },
+  _achievement: {type: Schema.Types.ObjectId, ref: 'Achievement' },
+  createdDate: { type:Date, default: Date.now }
+});
+
+let AchievementHistory = mongoose.model('AchievementHistory', achievementHistorySchema, 'AchievementHistories')
+
+let userSchema = new Schema({
+  facebook: {
+    name: {type: String, required:[true, '{PATH} must be filled']},
+    photo: String,
+  },
+  github: {
+    user: {type: String},
+    repository: [
+      {
+        name:String,
+        url: String,
+        createdDate: {type: Date, default: Date.now},
+        pushDate: {type: Date, default: Date.now}
+      }
+    ],
+    count: {type: Number, default: 0},
+  },
+  descr: String,
+  email: String,
+  poin: {type: Number, default: 0},
+  event: [{type:Schema.Types.ObjectId, ref:'Event'}],
+  achievementHistories: [ {type: Schema.Types.ObjectId, ref: 'AchievementHistory'}],
+  join_meetup: {type: Number, default: 0},
+  join_hackathon: {type: Number, default: 0},
+  createdDate: {type: Date, default: Date.now},
+  role: {type:String, default:"member"},
+  phone: {type:String}
 })
+//
+// userSchema.statics.findAchievementHistories = function(id) {
+//   return this.findById(id)
+//     .populate('achievementHistories')
+//     .then(user => {
+//       return user.achievementHistories
+//     })
+// }
 
 let User = mongoose.model('User', userSchema)
-module.exports = User
+module.exports = {User, AchievementHistory}
