@@ -62,13 +62,15 @@ class Main extends Component {
   render() {
     return (
       <div className="App">
+        <div className="row">
+          <div className="col-md-9">
           <nav className="navbar navbar-inverse">
             <div className="container-fluid">
-              <div className="navbar-header">
-                <a className="navbar-brand" href="#"><img className="logo" src="http://www.iconsdb.com/icons/download/white/eye-3-512.png" alt="TORCH" /></a>
+              <div className="navbar-header col-md-1">
+                <img className="logo" src="https://cdn3.iconfinder.com/data/icons/ui-9/512/eyes-512.png" alt="Vision" />
               </div>
-              <div className="navbar-collapse collapse">
-                <ul className="nav navbar-nav">
+              <div className="navbar-collapse collapse col-md-11">
+                <ul className="nav navbar-nav pull-left">
                 {(this.state.hackhaton === true)
                   ? <li><a onClick={()=> this.hackhaton()}><span className="navtext">Clear Hackhaton</span></a></li>
                   : <li><a onClick={()=> this.hackhaton()}><span className="navtext">Show Hackhaton</span></a></li>
@@ -101,18 +103,17 @@ class Main extends Component {
                       <li><a><img src="https://www.static-src.com/siva/asset//11_2016/air-asia-gift-voucher-microsite.jpg" alt="TORCH" className="rewards" alt="Cinque Terre" /></a></li>
                     </ul>
                   </li>
+                  <div className="pull-right">
+                    <li><img src={cookie.load('user').picture.data.url} className="img-circle" alt="Cinque Terre" /></li>
+                    <li><a><span className="navtext">{cookie.load('user').name}</span></a></li>
+                    <li><a onClick={()=> this.logout()}><span className="navtext">Logout</span></a></li>
+                  </div>
                 </ul>
-                <div className="pull-right">
-                  <li><img src={cookie.load('user').picture.data.url} className="img-circle" alt="Cinque Terre" /></li>
-                  <li><a><span className="navtext">{cookie.load('user').name}</span></a></li>
-                  <li><a onClick={()=> this.logout()}><span className="navtext">Logout</span></a></li>
-                </div>
+
               </div>
             </div>
           </nav>
-        <div className="row">
-          <div className="col-md-9">
-            <TorchMap />
+          <TorchMap />
           </div>
           <div className="col-md-3">
             <Dashboard />

@@ -2,8 +2,13 @@
   color: white;
 }
 
+.navbar-header{
+  margin-top: 17px;
+  width:33px
+}
+
 .logo{
-  width: 20%;
+  max-width: 33px;
 }
 
 .rewards{
@@ -80,17 +85,21 @@
   width: auto;
 }
 
+.navbar-collapse{
+  padding: 0;
+}
+
 .navbar-collapse div li{
   display: inline-block;
-  margin-left: 17px;
-  margin-top: 13px;
-  color: white;
+  margin-top: 10px;
+  margin-left: 10px;
+  color: black;
   font-size: 18px;
   font-weight: bold;
 }
 
 .navbar-collapse div li img{
-  margin-top: -2px;
+  margin-top: -10px;
 }
 
 .navbar-inverse {
@@ -98,7 +107,7 @@
   margin: 0;
   position: fixed;
   z-index: 1;
-  width: 1452px;
+  background-color: black;
 }
 
 .leaflet-container{
