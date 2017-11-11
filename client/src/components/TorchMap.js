@@ -69,7 +69,7 @@ class TorchMap extends Component {
   }
 
   requestJoin(id,i){
-    
+
     console.log(id);
     let data = {
       name: cookie.load('user').name,
@@ -86,7 +86,6 @@ class TorchMap extends Component {
       approved
     }}`)
     .then(response=>{
-    console.log(res);
     })
   }
 
