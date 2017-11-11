@@ -72,13 +72,13 @@ class Main extends Component {
               <div className="navbar-collapse collapse col-md-11">
                 <ul className="nav navbar-nav pull-left">
                 {(this.state.hackhaton === true)
-                  ? <li><a onClick={()=> this.hackhaton()}><span className="navtext">Clear Hackhaton</span></a></li>
-                  : <li><a onClick={()=> this.hackhaton()}><span className="navtext">Show Hackhaton</span></a></li>
+                  ? <li><a onClick={()=> this.hackhaton()}><span className="navtext">Hide Events</span></a></li>
+                  : null
                   }
-                  {(this.state.meetup === true)
+                  {/* {(this.state.meetup === true)
                   ? <li><a onClick={()=> this.meetup()}><span className="navtext">Clear Meetup</span></a></li>
                   : <li><a onClick={()=> this.meetup()}><span className="navtext">Show Meetup</span></a></li>
-                  }
+                  } */}
                   <li className="dropdown">
                     <a className="dropdown-toggle" data-toggle="dropdown"><span className="navtext">Achievement</span></a>
                     <ul className="dropdown-menu">

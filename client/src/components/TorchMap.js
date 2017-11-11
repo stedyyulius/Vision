@@ -27,7 +27,7 @@ var Me = icon({
     shadowAnchor: [22, 94]
 });
 
-const startLocation = [-6.260708 + 0.0006, 106.781617 - 0.0005]
+const startLocation = [-6.260708, 106.781617]
 const vr = `http://localhost:8081/vr`
 
 class TorchMap extends Component {
@@ -57,7 +57,7 @@ class TorchMap extends Component {
 
   componentWillMount(){
     this.props.getRooms()
-    let query = `query={events{name,date{event,join_start,join_end},location{name,lat,lng},image{standard,vr},url,tipe,approved}}&Content-Type=application/json`
+    let query = `query={events{name,date{event,join_start,join_end},location{name,lat,lng},image{standard,vr},url,_id,tipe,approved}}&Content-Type=application/json`
     axios.post(`${api}?${query}`)
     .then(res=>{
           console.log(`${api}?${query}`)
