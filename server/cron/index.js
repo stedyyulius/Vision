@@ -60,7 +60,7 @@ const insertGithub = () => {
       }).catch(err => {console.log('mamam tuh error'); console.log(err)})
       //taredit
       //komen karena kita ga mau dia stop
-      // this.stop()
+      this.stop()
     },
     () => {},
     true, /*start the job right now*/
@@ -119,7 +119,7 @@ const blastEvent = () => {
       console.log('WTF')
       //taredit
       //komen karena kita ga mau dia stop
-      // this.stop()
+      this.stop()
     },
     () => {},
     true, /*start the job right now*/
@@ -172,7 +172,7 @@ const remindEvent = () => {
       }).catch(ex => {console.log('mamam tuh error'); console.log(ex)})
       //taredit
       //komen karena kita ga mau dia stop
-      // this.stop()
+      this.stop()
     },
     () => {},
     true, /*start the job right now*/
@@ -180,8 +180,15 @@ const remindEvent = () => {
   )
 }
 const approvalEvent = () => {
-  let approvalEvent = new cronJob('* * 19 0 0 *' ,
+//   Seconds: 0-59
+// Minutes: 0-59
+// Hours: 0-23
+// Day of Month: 1-31
+// Months: 0-11
+// Day of Week: 0-6
+  let approvalEvent = new cronJob('* * * * *  *' ,
     function() {
+      console.log('approval')
       query(`
         {
           users(role:"admin"){email}
@@ -206,7 +213,7 @@ const approvalEvent = () => {
       }).catch(ex => {console.log('mamam tuh error'); console.log(ex)})
       //taredit
       //komen karena kita ga mau dia stop
-      // this.stop()
+      this.stop()
     },
     () => {},
     true, /*start the job right now*/
@@ -273,7 +280,7 @@ const createAchievementHistory = () => {
       }).catch(ex => {console.log('mamam tuh error'); console.log(ex)})
       //taredit
       //komen karena kita ga mau dia stop
-      // this.stop()
+      this.stop()
     },
     () => {},
     true, /*start the job right now*/
@@ -293,7 +300,8 @@ const sendEmail = (mailOptions) => {
 const sendSMS = (phone, content) => {
   createJOB('SMS','critical')
   queue.process('SMS',(job,done)=>{
-    sendMessage(phone,content, done)
+    sendMessage(phone,content)
+    done()
   })
 }
 
