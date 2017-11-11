@@ -87,13 +87,15 @@ const events =  {
     approved: {name:'approved', type:GraphQLInt},
     date_start: {name:'date_start', type:GraphQLString},
     date_event: {name:'date_event', type:GraphQLString},
+    tipe: {name:'tipe', type: GraphQLString},
   },
   resolve: (root,args) => new Promise((resolve, reject)=> {
-    let {date_start, date_event, approved} = args
+    let {date_start, date_event, approved, tipe} = args
     let search = {}
 
     // search.approved = (typeof approved != 'undefined') ?  approved : 1
     if(typeof approved !== 'undefined') search.approved =  approved
+    if(typeof tipe !== 'undefined') search.tipe =  tipe
     if(typeof date_start !== 'undefined') search['date.join_start'] =  {$eq: date_start }
     if(typeof date_event !== 'undefined') search['date.event'] =  {$eq: date_event }
 
