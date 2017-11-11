@@ -27,16 +27,16 @@ export default class vision_vr extends React.Component {
       image: 'https://i.ytimg.com/vi/nKZ0Q0MUCOc/maxresdefault.jpg'
     },{
       name: '2',
-      image: 'https://i.ytimg.com/vi/-7M4pqCQ3DA/maxresdefault.jpg'
+      image: "https://firebasestorage.googleapis.com/v0/b/grayfox-dfa44.appspot.com/o/room360%2Fruang-kelas.jpeg?alt=media&token=979cfc01-f556-4f2b-a618-20b514b711d1"
     },{
       name: '3',
-      image: 'https://www.meetingsbooker.com/images/venues/LakeBarkleyStateResortLodge-0.jpg'
+      image: "https://firebasestorage.googleapis.com/v0/b/grayfox-dfa44.appspot.com/o/room360%2Fruang-kelas.jpeg?alt=media&token=979cfc01-f556-4f2b-a618-20b514b711d1"
     },{
       name: '4',
-      image: 'https://i.ytimg.com/vi/3haKeIc-F_Y/maxresdefault.jpg'
+      image: "https://i.ytimg.com/vi/3haKeIc-F_Y/maxresdefault.jpg"
     },{
       name: '5',
-      image: 'https://i.ytimg.com/vi/3haKeIc-F_Y/maxresdefault.jpg'
+      image: "http://media.hdrmaps.com/media/catalog/product/cache/1/image/88e69315390709c823f110ec02afd14b/h/d/hdrmaps_com_free_055_tonemapped.jpg"
     }]
 
     this.setState({
@@ -132,7 +132,7 @@ export default class vision_vr extends React.Component {
               </VrButton>
               </View>
             )}
-            <Text
+            {/* <Text
               style={{
                 backgroundColor: '#777879',
                 fontSize: 0.8,
@@ -147,7 +147,7 @@ export default class vision_vr extends React.Component {
                             {rotateY:-30}],
               }}>
               {this.state.room.name}
-            </Text>
+            </Text> */}
           </View>
         : null
       }
