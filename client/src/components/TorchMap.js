@@ -7,7 +7,7 @@ import cookie from 'react-cookies'
 
 import { getRooms } from '../actions/index'
 import { api } from '../config'
-import { request, GraphQLClient } from 'graphql-request'
+import request from 'request'
 
 var Activity = icon({
     iconUrl: 'https://i.imgur.com/EBgsrAe.png',
@@ -86,6 +86,7 @@ class TorchMap extends Component {
       approved
     }}`)
     .then(response=>{
+    console.log(response);
     })
   }
 
