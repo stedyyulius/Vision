@@ -36,7 +36,7 @@ export default class vision_vr extends React.Component {
       image: "https://i.ytimg.com/vi/3haKeIc-F_Y/maxresdefault.jpg"
     },{
       name: '5',
-      image: "http://media.hdrmaps.com/media/catalog/product/cache/1/image/88e69315390709c823f110ec02afd14b/h/d/hdrmaps_com_free_055_tonemapped.jpg"
+      image: "https://i.ytimg.com/vi/1dxF6fEUms8/maxresdefault.jpg"
     }]
 
     this.setState({
