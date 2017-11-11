@@ -23,7 +23,7 @@ class Auth extends Component{
       <div className="body">
         <div className="login-form">
             <img className="icon" src="http://cliparting.com/wp-content/uploads/2016/06/Eye-clip-art-black-and-white-free-clipart-images.png" />
-            <p className="title">Meetup and Hackhaton Searher App</p>
+            <p className="title">Events Searher App</p>
         <div className="title">
           <Facebook />
         </div>
