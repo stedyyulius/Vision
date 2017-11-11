@@ -19,16 +19,17 @@ class Dashboard extends Component {
   }
   componentDidMount(){
     this.props.gameList()
-    axios.get(`${api}/komsel`)
+    let query = `query={events{name,date{event,join_start,join_end},location{name,lat,lng},image{standard,vr},url,tipe,approved}}&Content-Type=application/json`
+    axios.get(`${api}?${query}`)
     .then(res=>{
-      for(let i = 0; i < res.data.length; i++){
-        res.data[i].distance = geodist(
-          {lat: res.data[i].location.lat, lon: res.data[i].location.lng},
+      for(let i = 0; i < res.data.data.events.length; i++){
+        res.data.data.events[i].distance = geodist(
+          {lat: res.data.data.events[i].location.lat, lon: res.data.data.events[i].location.lng},
           {lat: -6.260708, lon: 106.781617},
           {exact: true, unit: 'meters'});
       }
       this.setState({
-        komsel: res.data
+        komsel: res.data.data.events
       })
     })
     this.props.getRepos('stedyyulius')
@@ -76,7 +77,7 @@ class Dashboard extends Component {
                 ? (this.state.komsel.map((k,i)=>
                     <div className="col-md-12 list-group-item" key={i} onClick={()=> this.props.redirect(k.location.lat,k.location.lng)}>
                       <div className="col-md-4">
-                      <img className="game-icon" src={k.map_image} alt="game-icon"/>
+                      <img className="game-icon" src={k.image.standard} alt="game-icon"/>
                       </div>
                       <div className="col-md-8">
                       <p className="game-name">{k.name}</p>

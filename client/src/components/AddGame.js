@@ -51,17 +51,26 @@ class AddGame extends React.Component {
   }
 
   createActivity(){
-    let game = {
-      isOnline : this.state.isOnline,
-      name: this.state.name,
-      descr: this.state.descr,
-      poin: this.state.prize,
-      image: this.state.image,
-      creator: cookie.load('user').name,
-      lat: this.state.lat,
-      lng: this.state.lng
-    }
-    axios.post(`${api}/room`,game)
+    let query = `
+      query=mutation {
+        createEvent(input:{
+            tipe:"${this.state.isOnline}",
+            name:"${this.state.name}",
+            image_standard:"${this.state.image}",
+            image_vr:["https://firebasestorage.googleapis.com/v0/b/grayfox-dfa44.appspot.com/o/room360%2FIMG_1972.JPG?alt=media&token=22e402c1-1151-41d3-a01d-1538d2135b45"],
+            location_lat:"${this.state.lat}",
+            location_lng:"${this.state.lng}",
+            location_name:"${this.state.location}",
+            url:"${this.state.url}",
+            date_join_start:"2017-11-12",
+            date_join_end:"2017-11-12",
+            date_event:"2017-11-12",
+            descr:"${this.state.descr}",
+            _organizer:"5a01f11ff6913448d2b92337"
+          }){_id}
+        }&Content-Type=application/json`
+        console.log(query);
+    axios.post(`${api}?${query}`)
     .then(res=>{
       this.props.getRooms()
       console.log(res);
@@ -82,8 +91,8 @@ class AddGame extends React.Component {
         <div className="form-group">
           <select defaultValue="Select Event Type" onChange={(e)=>this.setState({isOnline: e.target.value})} style={{width:'100%',padding:'15px',color:'gray'}}>
             <option disabled>Select Event Type</option>
-            <option value={false}>Meetup</option>
-            <option value={true}>Hackhaton</option>
+            <option value={"meetup"}>Meetup</option>
+            <option value={"hackhaton"}>Hackhaton</option>
           </select>
         </div>
 <div className="form-group">
@@ -95,6 +104,16 @@ class AddGame extends React.Component {
   <label htmlFor="exampleInputEmail1">Description</label>
   <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Description"
   onChange={(e)=> this.setState({descr: e.target.value})} />
+</div>
+<div className="form-group">
+  <label htmlFor="exampleInputEmail1">Url</label>
+  <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Url"
+  onChange={(e)=> this.setState({url: e.target.value})} />
+</div>
+<div className="form-group">
+  <label htmlFor="exampleInputEmail1">Address</label>
+  <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Address"
+  onChange={(e)=> this.setState({location: e.target.value})} />
 </div>
 <div className="form-group">
   <label htmlFor="exampleInputPassword1">Image</label>
