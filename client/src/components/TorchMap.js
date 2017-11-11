@@ -69,23 +69,24 @@ class TorchMap extends Component {
   }
 
   requestJoin(id,i){
+    
     console.log(id);
     let data = {
       name: cookie.load('user').name,
       image: cookie.load('user').picture.data.url
     }
     console.log(data);
-    axios.post(`${api}/request/komsel/join/${id}`,data)
+    axios.post(`http://localhost:4000/graphql?query=mutation{joinEvent(id:"5a0236bcd9a47651981aa458",participant:"5a01f11ff6913448d2b92337") {
+      _id
+      name
+      descr
+      tipe
+      url
+      _organizer
+      approved
+    }}`)
     .then(response=>{
-      console.log(response);
-      axios.get(`${api}/komsel`)
-      .then(res=>{
-        console.log(res);
-        this.setState({
-          komsel: res.data,
-          isJoin: i
-        })
-      })
+    console.log(res);
     })
   }
 

@@ -15,6 +15,7 @@ const PoinHistory = require('../models/poinHistory')
 const Poin = require('../models/poin')
 const Event = require('../models/event')
 const {users} = require('./userSchema')
+const {sendMessage} = require('../mainAPI/main')
 
 const EventType = new GraphQLObjectType({
   name: 'EventType',
@@ -220,8 +221,13 @@ const joinEvent = {
 
                     }
                   })
+                  
                   user.event = user.event || []
                   user.event.push(id)
+                  
+                  let smsContent = `Hi Coders! Join us at ${event.name} ${event.tipe}`
+                  sendMessage(user.phone, smsContent)
+                                    
                   user.save((err,j_user) => err? reject(err) : resolve(j_event) )
                 } catch(ex) {console.log(ex)}
               }
