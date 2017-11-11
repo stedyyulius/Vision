@@ -1,5 +1,6 @@
 import { api } from '../config'
 import axios from 'axios'
+import { request, GraphQLClient } from 'graphql-request'
 
 const isCheck = (status) =>{
   console.log(status);
@@ -10,28 +11,32 @@ const isCheck = (status) =>{
 }
 
 const getRooms = () =>{
+let query = `events(approved:1, tipe:"meetup"){name, location{name},tipe, approved}`
   return(dispatch)=>{
-    axios.get(`${api}/room/search/offline`)
-    .then(res=>{
-      console.log(res);
+    let client = new GraphQLClient(api, { headers: {} })
+    client.request(query,).then(data =>{
+      console.log(data);
       dispatch({
-        type: 'Rooms',
-        payload: res.data
+        type: "Rooms",
+        payload: data
       })
-    })
+    } 
+    )
   }
 }
 
 const gameList = () =>{
+  let query = `events(approved:1, tipe:"hackathon"){name, location{name},tipe, approved}`
   return(dispatch)=>{
-    axios.get(`${api}/room/search/online`)
-    .then(res=>{
-      console.log(res.data);
+    let client = new GraphQLClient(api, { headers: {} })
+    client.request(query,).then(data =>{
+      console.log(data);
       dispatch({
-        type: 'Games',
-        payload: res.data
+        type: "Games",
+        payload: data
       })
-    })
+    } 
+    )
   }
 }
 

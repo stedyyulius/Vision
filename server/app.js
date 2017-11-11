@@ -26,7 +26,7 @@ app.use('/graphql', graphQLHTTP (req => ({
 app.use('/cron', cron.init)
 app.use('/playground', expressPlayground({ endpoint: '/graphql' }))
 
-let env = app.settings.env || 'dev'
+let env = app.settings.env || 'prod'
 
 let db_config = {
   dev: 'mongodb://localhost/vision',
