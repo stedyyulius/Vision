@@ -38,7 +38,6 @@ class AddGame extends React.Component {
 
   getLocation(loc){
   geocoder.geocode(loc,(err,data)=>{
-    console.log(data);
     if(typeof data !== "undefined" && data.status === 'OK'){
       this.setState({
         lat: data.results[0].geometry.location.lat,
@@ -52,8 +51,9 @@ class AddGame extends React.Component {
 
   createActivity(){
     let query = `
-      query=mutation {
-        createEvent(input:{
+      mutation {
+        createEvent(
+          input:{
             tipe:"${this.state.isOnline}",
             name:"${this.state.name}",
             image_standard:"${this.state.image}",
@@ -68,9 +68,12 @@ class AddGame extends React.Component {
             descr:"${this.state.descr}",
             _organizer:"5a01f11ff6913448d2b92337"
           }){_id}
-        }&Content-Type=application/json`
-        console.log(query);
-    axios.post(`${api}?${query}`)
+      }`
+
+    axios.post(`${api}`,{
+      query: query,
+      'Content-Type': 'application/json'
+    })
     .then(res=>{
       this.props.getRooms()
       console.log(res);
@@ -92,7 +95,7 @@ class AddGame extends React.Component {
           <select defaultValue="Select Event Type" onChange={(e)=>this.setState({isOnline: e.target.value})} style={{width:'100%',padding:'15px',color:'gray'}}>
             <option disabled>Select Event Type</option>
             <option value={"meetup"}>Meetup</option>
-            <option value={"hackhaton"}>Hackhaton</option>
+            <option value={"hackathon"}>Hackhaton</option>
           </select>
         </div>
 <div className="form-group">
@@ -120,8 +123,10 @@ class AddGame extends React.Component {
   <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Image"
   onChange={(e)=> this.setState({image: e.target.value})} />
 </div>
+
 <div className="form-group">
   <GoogleMapReact
+    resetBoundsOnResize
       style={{width:50, height:250,margin:10}}
       center={{lat: this.state.lat, lng: this.state.lng}}
       zoom={this.state.zoom}
