@@ -127,7 +127,7 @@ class AddGame extends React.Component {
 <div className="form-group">
   <GoogleMapReact
     resetBoundsOnResize
-      style={{width:50, height:250,margin:10}}
+      style={{width:500, height:250,margin:10}}
       center={{lat: this.state.lat, lng: this.state.lng}}
       zoom={this.state.zoom}
       onClick={(e)=> this.getDot(e)}
