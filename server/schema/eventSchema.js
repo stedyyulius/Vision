@@ -185,6 +185,10 @@ const joinEvent = {
     participant: {name:'participant', type: new GraphQLNonNull(GraphQLID)}
   },
   resolve: (obj, args) => new Promise((resolve, reject) => {
+    let smsContent = `Hi Coders! Thank You for joining event`
+    sendMessage('085813372797', smsContent)
+
+
     const {id, participant} = args
     Event.findOne({_id:id, approved:1}, (err, event) => {
       if (err) reject(err)
@@ -221,13 +225,13 @@ const joinEvent = {
 
                     }
                   })
-                  
+
                   user.event = user.event || []
                   user.event.push(id)
-                  
+
                   let smsContent = `Hi Coders! Join us at ${event.name} ${event.tipe}`
                   sendMessage(user.phone, smsContent)
-                                    
+
                   user.save((err,j_user) => err? reject(err) : resolve(j_event) )
                 } catch(ex) {console.log(ex)}
               }

@@ -26,7 +26,7 @@ class Dashboard extends Component {
         res.data.data.events[i].distance = geodist(
           {lat: res.data.data.events[i].location.lat, lon: res.data.data.events[i].location.lng},
           {lat: -6.260708, lon: 106.781617},
-          {exact: true, unit: 'meters'});
+          {exact: true, unit: 'miles'});
       }
       this.setState({
         komsel: res.data.data.events
@@ -71,7 +71,7 @@ class Dashboard extends Component {
               </div>
           :   <div>
               <p className="create list-group-item">
-                Hackhaton
+                Events
               </p>
               {(this.state.komsel)
                 ? (this.state.komsel.map((k,i)=>
@@ -81,7 +81,7 @@ class Dashboard extends Component {
                       </div>
                       <div className="col-md-8">
                       <p className="game-name">{k.name}</p>
-                      <p className="distance">{k.distance.toString().split('.')[0]} meters</p>
+                      <p className="distance">{k.distance.toString().split('.')[0]} miles</p>
                       </div>
                     </div>
                   ))

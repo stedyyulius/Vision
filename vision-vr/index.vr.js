@@ -24,13 +24,10 @@ export default class vision_vr extends React.Component {
   componentWillMount(){
     const rooms = [{
       name: '1',
-      image: 'https://i.ytimg.com/vi/nKZ0Q0MUCOc/maxresdefault.jpg'
+      image: "https://firebasestorage.googleapis.com/v0/b/grayfox-dfa44.appspot.com/o/room360%2Fruang-kelas.jpeg?alt=media&token=979cfc01-f556-4f2b-a618-20b514b711d1"
     },{
       name: '2',
-      image: "https://firebasestorage.googleapis.com/v0/b/grayfox-dfa44.appspot.com/o/room360%2Fruang-kelas.jpeg?alt=media&token=979cfc01-f556-4f2b-a618-20b514b711d1"
-    },{
-      name: '3',
-      image: "https://firebasestorage.googleapis.com/v0/b/grayfox-dfa44.appspot.com/o/room360%2Fruang-kelas.jpeg?alt=media&token=979cfc01-f556-4f2b-a618-20b514b711d1"
+      image: 'https://i.ytimg.com/vi/nKZ0Q0MUCOc/maxresdefault.jpg'
     },{
       name: '4',
       image: "https://i.ytimg.com/vi/3haKeIc-F_Y/maxresdefault.jpg"

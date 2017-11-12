@@ -301,7 +301,7 @@ const sendSMS = (phone, content) => {
   createJOB('SMS','critical')
   queue.process('SMS',(job,done)=>{
     sendMessage(phone,content)
-    done()
+    // done()
   })
 }
 
