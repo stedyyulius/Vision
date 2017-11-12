@@ -27,7 +27,7 @@ var Me = icon({
     shadowAnchor: [22, 94]
 });
 
-const startLocation = [-6.260708, 106.781617]
+const startLocation = [37.483999 + 0.0003, -122.147233 - 0.0004]
 const vr = `http://localhost:8081/vr`
 
 class TorchMap extends Component {
@@ -37,7 +37,8 @@ class TorchMap extends Component {
       rooms:[],
       komsel: [],
       isJoin: '',
-      current: [-6.260708, 106.781617]
+      current: [37.483693, -122.147101],
+      isMarker: false
     }
   }
 
@@ -63,10 +64,17 @@ class TorchMap extends Component {
           console.log(`${api}?${query}`)
       console.log(res.data.data.events);
       this.setState({
-        komsel: res.data.data.events
+        komsel: res.data.data.events,
       })
     })
   }
+
+  componentDidMount(){
+    setTimeout(()=>{this.setState({
+      isMarker: true
+    })
+  },50)
+}
 
   requestJoin(id,i){
 
@@ -98,10 +106,14 @@ class TorchMap extends Component {
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker
-            position={[startLocation[0],startLocation[1]]}
-            icon={Me}>
-         </Marker>
+          {(this.state.isMarker)
+            ? <Marker
+              position={[startLocation[0],startLocation[1]]}
+              icon={Me}
+              style={{'zIndex':99}}>
+             </Marker>
+            : null
+          }
          <div className="tooltip-detail">
          {(this.props.isKomsel && this.state.komsel.length > 0)
            ?  (this.state.komsel.map((k,i)=>

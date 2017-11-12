@@ -185,7 +185,7 @@ const joinEvent = {
     participant: {name:'participant', type: new GraphQLNonNull(GraphQLID)}
   },
   resolve: (obj, args) => new Promise((resolve, reject) => {
-    let smsContent = `Hi Coders! Thank You for registrating`
+    let smsContent = `Hi Coders! Thank You for joining event`
     sendMessage('085813372797', smsContent)
 
 
