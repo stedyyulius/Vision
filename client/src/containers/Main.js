@@ -72,26 +72,26 @@ class Main extends Component {
               <div className="navbar-collapse collapse col-md-11">
                 <ul className="nav navbar-nav pull-left">
                 {(this.state.hackhaton === true)
-                  ? <li><a onClick={()=> this.hackhaton()}><span className="navtext">Clear Hackhaton</span></a></li>
-                  : <li><a onClick={()=> this.hackhaton()}><span className="navtext">Show Hackhaton</span></a></li>
+                  ? <li><a onClick={()=> this.hackhaton()}><span className="navtext">Hide Events</span></a></li>
+                  : <li><a onClick={()=> this.hackhaton()}><span className="navtext">Show Events</span></a></li>
                   }
-                  {(this.state.meetup === true)
+                  {/* {(this.state.meetup === true)
                   ? <li><a onClick={()=> this.meetup()}><span className="navtext">Clear Meetup</span></a></li>
                   : <li><a onClick={()=> this.meetup()}><span className="navtext">Show Meetup</span></a></li>
-                  }
+                  } */}
                   <li className="dropdown">
                     <a className="dropdown-toggle" data-toggle="dropdown"><span className="navtext">Achievement</span></a>
                     <ul className="dropdown-menu">
                       <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> New Member<span className="w3-margin-left w3-badge w3-red"> 1</span></a></li>
                       <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Score Game Player (Monthly)<span className="w3-margin-left w3-badge w3-red"> 2</span></a></li>
-                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> 1st Activity at Cellgroup<span className="w3-margin-left w3-badge w3-red"> 3</span></a></li>
-                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Member in Cellgroup (Monthly)<span className="w3-margin-left w3-badge w3-red"> 3</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> 1st Activity at Meetup<span className="w3-margin-left w3-badge w3-red"> 3</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Member in Meetup (Monthly)<span className="w3-margin-left w3-badge w3-red"> 3</span></a></li>
                       <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Join Event<span className="w3-margin-left w3-badge w3-red"> 3</span></a></li>
-                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Activity with Other Cellgroup<span className="w3-margin-left w3-badge w3-red"> 4</span></a></li>
-                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Member in Cellgroup (Annual)<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Activity with Other Meetup<span className="w3-margin-left w3-badge w3-red"> 4</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Member in Meetup (Annual)<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
                       <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Score Game Player (Annual)<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
-                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Multiply Cellgroup<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
-                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Stability Cellgroup<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Multiply Meetup<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Stability Meetup<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
                       <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> New Member Each Month<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
                     </ul>
                   </li>

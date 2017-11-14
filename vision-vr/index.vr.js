@@ -24,19 +24,16 @@ export default class vision_vr extends React.Component {
   componentWillMount(){
     const rooms = [{
       name: '1',
-      image: 'https://i.ytimg.com/vi/nKZ0Q0MUCOc/maxresdefault.jpg'
+      image: "https://firebasestorage.googleapis.com/v0/b/grayfox-dfa44.appspot.com/o/room360%2Fruang-kelas.jpeg?alt=media&token=979cfc01-f556-4f2b-a618-20b514b711d1"
     },{
       name: '2',
-      image: 'https://i.ytimg.com/vi/-7M4pqCQ3DA/maxresdefault.jpg'
-    },{
-      name: '3',
-      image: 'https://www.meetingsbooker.com/images/venues/LakeBarkleyStateResortLodge-0.jpg'
+      image: 'https://i.ytimg.com/vi/nKZ0Q0MUCOc/maxresdefault.jpg'
     },{
       name: '4',
-      image: 'https://i.ytimg.com/vi/3haKeIc-F_Y/maxresdefault.jpg'
+      image: "https://i.ytimg.com/vi/3haKeIc-F_Y/maxresdefault.jpg"
     },{
       name: '5',
-      image: 'https://i.ytimg.com/vi/3haKeIc-F_Y/maxresdefault.jpg'
+      image: "https://i.ytimg.com/vi/1dxF6fEUms8/maxresdefault.jpg"
     }]
 
     this.setState({
@@ -132,7 +129,7 @@ export default class vision_vr extends React.Component {
               </VrButton>
               </View>
             )}
-            <Text
+            {/* <Text
               style={{
                 backgroundColor: '#777879',
                 fontSize: 0.8,
@@ -147,7 +144,7 @@ export default class vision_vr extends React.Component {
                             {rotateY:-30}],
               }}>
               {this.state.room.name}
-            </Text>
+            </Text> */}
           </View>
         : null
       }

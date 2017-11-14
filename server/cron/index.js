@@ -180,8 +180,15 @@ const remindEvent = () => {
   )
 }
 const approvalEvent = () => {
-  let approvalEvent = new cronJob('* * 19 0 0 *' ,
+//   Seconds: 0-59
+// Minutes: 0-59
+// Hours: 0-23
+// Day of Month: 1-31
+// Months: 0-11
+// Day of Week: 0-6
+  let approvalEvent = new cronJob('* * * * *  *' ,
     function() {
+      console.log('approval')
       query(`
         {
           users(role:"admin"){email}
@@ -293,7 +300,8 @@ const sendEmail = (mailOptions) => {
 const sendSMS = (phone, content) => {
   createJOB('SMS','critical')
   queue.process('SMS',(job,done)=>{
-    sendMessage(phone,content, done)
+    sendMessage(phone,content)
+    // done()
   })
 }
 

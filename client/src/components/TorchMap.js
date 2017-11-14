@@ -7,6 +7,7 @@ import cookie from 'react-cookies'
 
 import { getRooms } from '../actions/index'
 import { api } from '../config'
+import request from 'request'
 
 var Activity = icon({
     iconUrl: 'https://i.imgur.com/EBgsrAe.png',
@@ -26,7 +27,7 @@ var Me = icon({
     shadowAnchor: [22, 94]
 });
 
-const startLocation = [-6.260708 + 0.0006, 106.781617 - 0.0005]
+const startLocation = [37.483999 + 0.0003, -122.147233 - 0.0004]
 const vr = `http://localhost:8081/vr`
 
 class TorchMap extends Component {
@@ -36,7 +37,8 @@ class TorchMap extends Component {
       rooms:[],
       komsel: [],
       isJoin: '',
-      current: [-6.260708, 106.781617]
+      current: [37.483693, -122.147101],
+      isMarker: false
     }
   }
 
@@ -56,33 +58,43 @@ class TorchMap extends Component {
 
   componentWillMount(){
     this.props.getRooms()
-    axios.get(`${api}/komsel`)
+    let query = `query={events{name,date{event,join_start,join_end},location{name,lat,lng},image{standard,vr},url,_id,tipe,approved}}&Content-Type=application/json`
+    axios.post(`${api}?${query}`)
     .then(res=>{
-      console.log(res);
+          console.log(`${api}?${query}`)
+      console.log(res.data.data.events);
       this.setState({
-        komsel: res.data
+        komsel: res.data.data.events,
       })
     })
   }
 
+  componentDidMount(){
+    setTimeout(()=>{this.setState({
+      isMarker: true
+    })
+  },50)
+}
+
   requestJoin(id,i){
+
     console.log(id);
     let data = {
       name: cookie.load('user').name,
       image: cookie.load('user').picture.data.url
     }
     console.log(data);
-    axios.post(`${api}/request/komsel/join/${id}`,data)
+    axios.post(`http://localhost:4000/graphql?query=mutation{joinEvent(id:"5a0236bcd9a47651981aa458",participant:"5a01f11ff6913448d2b92337") {
+      _id
+      name
+      descr
+      tipe
+      url
+      _organizer
+      approved
+    }}`)
     .then(response=>{
-      console.log(response);
-      axios.get(`${api}/komsel`)
-      .then(res=>{
-        console.log(res);
-        this.setState({
-          komsel: res.data,
-          isJoin: i
-        })
-      })
+    console.log(response);
     })
   }
 
@@ -94,10 +106,14 @@ class TorchMap extends Component {
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker
-            position={[startLocation[0],startLocation[1]]}
-            icon={Me}>
-         </Marker>
+          {(this.state.isMarker)
+            ? <Marker
+              position={[startLocation[0],startLocation[1]]}
+              icon={Me}
+              style={{'zIndex':99}}>
+             </Marker>
+            : null
+          }
          <div className="tooltip-detail">
          {(this.props.isKomsel && this.state.komsel.length > 0)
            ?  (this.state.komsel.map((k,i)=>
@@ -105,7 +121,7 @@ class TorchMap extends Component {
                 key={i}
                 position={[+k.location.lat,+k.location.lng]}
                 icon={icon({
-                    iconUrl: k.map_image,
+                    iconUrl: k.image.standard,
                     iconSize: [70, 70],
                     iconAnchor: [22, 94],
                     popupAnchor: [-3, -76],
@@ -114,17 +130,18 @@ class TorchMap extends Component {
                 })}>
                 <Popup>
                   <span>
-                    <span className="tooltip-detail">{k.date}</span><br />
+                    <span className="tooltip-detail">{k.date.join_start}</span><br />
                     <b className="tooltip-detail">{k.name}</b> <br />
-                    <img className="komsel tooltip-detail" src={k.image} /> <br />
+                    <img className="komsel tooltip-detail" src={k.image.standard} /> <br />
                     <hr />
-                    <span className="leader">{k.createdBy}</span>
-                      {(k.member.length === 0)
+                    <span className="leader">{k.organizer}</span>
+                    <a className="leader">{k.url}</a>
+                      {/* {(k.participant.length === 0)
                         ? (<b className="tooltip-detail">No Member Yet</b>)
                         : (k.member.map((m,index)=>
                           <div key={index}><b>{m._member.name}</b><br /></div>
                         ))
-                      }
+                      } */}
                     <hr />
                     {(this.state.isJoin === i)
                       ? null
@@ -133,7 +150,7 @@ class TorchMap extends Component {
                         onClick={()=> this.requestJoin(k._id,i)}>
                         Join
                         </button>
-                        <button className="btn btn-primary" onClick={()=> window.open(vr)}>
+                        <button className="btn btn-primary" onClick={()=> window.open(`${vr}?${k._id}`)}>
                         Visit Vr
                         </button>
                         </div>

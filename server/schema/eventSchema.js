@@ -15,6 +15,7 @@ const PoinHistory = require('../models/poinHistory')
 const Poin = require('../models/poin')
 const Event = require('../models/event')
 const {users} = require('./userSchema')
+const {sendMessage} = require('../mainAPI/main')
 
 const EventType = new GraphQLObjectType({
   name: 'EventType',
@@ -35,7 +36,7 @@ const EventType = new GraphQLObjectType({
     },
     location: {
       type: new GraphQLObjectType({
-        name: "LocaionType",
+        name: "LocationType",
         fields: {
           lat: {type: GraphQLString},
           lng: {type: GraphQLString},
@@ -46,7 +47,7 @@ const EventType = new GraphQLObjectType({
     url: {type: GraphQLString},
     date: {
       type: new GraphQLObjectType({
-        name: "LocationType",
+        name: "DateType",
         fields: {
           join_start: {type: GraphQLString},
           join_end: {type: GraphQLString},
@@ -87,13 +88,15 @@ const events =  {
     approved: {name:'approved', type:GraphQLInt},
     date_start: {name:'date_start', type:GraphQLString},
     date_event: {name:'date_event', type:GraphQLString},
+    tipe: {name:'tipe', type: GraphQLString},
   },
   resolve: (root,args) => new Promise((resolve, reject)=> {
-    let {date_start, date_event, approved} = args
+    let {date_start, date_event, approved, tipe} = args
     let search = {}
 
     // search.approved = (typeof approved != 'undefined') ?  approved : 1
     if(typeof approved !== 'undefined') search.approved =  approved
+    if(typeof tipe !== 'undefined') search.tipe =  tipe
     if(typeof date_start !== 'undefined') search['date.join_start'] =  {$eq: date_start }
     if(typeof date_event !== 'undefined') search['date.event'] =  {$eq: date_event }
 
@@ -182,6 +185,10 @@ const joinEvent = {
     participant: {name:'participant', type: new GraphQLNonNull(GraphQLID)}
   },
   resolve: (obj, args) => new Promise((resolve, reject) => {
+    let smsContent = `Hi Coders! Thank You for joining event`
+    sendMessage('085813372797', smsContent)
+
+
     const {id, participant} = args
     Event.findOne({_id:id, approved:1}, (err, event) => {
       if (err) reject(err)
@@ -218,8 +225,13 @@ const joinEvent = {
 
                     }
                   })
+
                   user.event = user.event || []
                   user.event.push(id)
+
+                  let smsContent = `Hi Coders! Join us at ${event.name} ${event.tipe}`
+                  sendMessage(user.phone, smsContent)
+
                   user.save((err,j_user) => err? reject(err) : resolve(j_event) )
                 } catch(ex) {console.log(ex)}
               }
