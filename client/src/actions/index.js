@@ -20,7 +20,7 @@ let query = `events(approved:1, tipe:"meetup"){name, location{name},tipe, approv
         type: "Rooms",
         payload: data
       })
-    } 
+    }
     )
   }
 }
@@ -35,7 +35,7 @@ const gameList = () =>{
         type: "Games",
         payload: data
       })
-    } 
+    }
     )
   }
 }
@@ -75,10 +75,9 @@ const getRepos = (username) =>{
   return(dispatch)=>{
     axios.get(`https://api.github.com/users/${username}/repos?sort=created`)
     .then(res=>{
-      console.log(res);
       dispatch({
         type: 'Repos',
-        payload: res.data.slice(0,5)
+        payload: res.data.slice(0,3)
       })
     })
   }

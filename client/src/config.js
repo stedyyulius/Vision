@@ -1,1 +1,1 @@
-export const api = `http://localhost:4000/graphql`
+export const api =  `https://vision-server.herokuapp.com/graphql`

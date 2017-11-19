@@ -56,47 +56,39 @@ class TorchMap extends Component {
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.getRooms()
     let query = `query={events{name,date{event,join_start,join_end},location{name,lat,lng},image{standard,vr},url,_id,tipe,approved}}&Content-Type=application/json`
     axios.post(`${api}?${query}`)
     .then(res=>{
-          console.log(`${api}?${query}`)
-      console.log(res.data.data.events);
+      console.log(res);
       this.setState({
         komsel: res.data.data.events,
       })
     })
   }
 
-  componentDidMount(){
-    setTimeout(()=>{this.setState({
-      isMarker: true
-    })
-  },50)
-}
-
-  requestJoin(id,i){
-
-    console.log(id);
-    let data = {
-      name: cookie.load('user').name,
-      image: cookie.load('user').picture.data.url
-    }
-    console.log(data);
-    axios.post(`http://localhost:4000/graphql?query=mutation{joinEvent(id:"5a0236bcd9a47651981aa458",participant:"5a01f11ff6913448d2b92337") {
-      _id
-      name
-      descr
-      tipe
-      url
-      _organizer
-      approved
-    }}`)
-    .then(response=>{
-    console.log(response);
-    })
-  }
+  // requestJoin(id,i){
+  //
+  //   console.log(id);
+  //   let data = {
+  //     name: cookie.load('user').name,
+  //     image: cookie.load('user').picture.data.url
+  //   }
+  //   console.log(data);
+  //   axios.post(`http://localhost:4000/graphql?query=mutation{joinEvent(id:"5a0236bcd9a47651981aa458",participant:"5a01f11ff6913448d2b92337") {
+  //     _id
+  //     name
+  //     descr
+  //     tipe
+  //     url
+  //     _organizer
+  //     approved
+  //   }}`)
+  //   .then(response=>{
+  //   console.log(response);
+  //   })
+  // }
 
   render(){
     return(
@@ -116,12 +108,12 @@ class TorchMap extends Component {
           }
          <div className="tooltip-detail">
          {(this.props.isKomsel && this.state.komsel.length > 0)
-           ?  (this.state.komsel.map((k,i)=>
+           ?  (this.state.komsel.slice(0,5).map((k,i)=>
               <Marker
                 key={i}
                 position={[+k.location.lat,+k.location.lng]}
                 icon={icon({
-                    iconUrl: k.image.standard,
+                    iconUrl: k.image.standard || 'http://www.potepatilalumni.org/images/Event.png',
                     iconSize: [70, 70],
                     iconAnchor: [22, 94],
                     popupAnchor: [-3, -76],

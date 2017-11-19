@@ -53,7 +53,7 @@ class Dashboard extends Component {
                 ? (this.props.repos.map((r,i)=>
                     <div className="col-md-12 list-group-item" key={i}>
                       <div className="col-md-4">
-                      <img className="game-icon" src={r.owner.avatar_url} alt="game-icon"/>
+                      <img className="game-icon" src={r.owner.avatar_url} alt="repo-icon"/>
                       </div>
                       <div className="col-md-8">
                         <div className="row">
@@ -74,10 +74,10 @@ class Dashboard extends Component {
                 Events
               </p>
               {(this.state.komsel)
-                ? (this.state.komsel.map((k,i)=>
+                ? (this.state.komsel.slice(0,5).map((k,i)=>
                     <div className="col-md-12 list-group-item" key={i} onClick={()=> this.props.redirect(k.location.lat,k.location.lng)}>
                       <div className="col-md-4">
-                      <img className="game-icon" src={k.image.standard} alt="game-icon"/>
+                      <img className="game-icon" src={k.image.standard || 'http://www.potepatilalumni.org/images/Event.png'} alt="event-icon"/>
                       </div>
                       <div className="col-md-8">
                       <p className="game-name">{k.name}</p>
