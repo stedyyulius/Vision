@@ -74,7 +74,7 @@ class Dashboard extends Component {
                 Events
               </p>
               {(this.state.komsel)
-                ? (this.state.komsel.slice(0,5).map((k,i)=>
+                ? (this.state.komsel.map((k,i)=>
                     <div className="col-md-12 list-group-item" key={i} onClick={()=> this.props.redirect(k.location.lat,k.location.lng)}>
                       <div className="col-md-4">
                       <img className="game-icon" src={k.image.standard || 'http://www.potepatilalumni.org/images/Event.png'} alt="event-icon"/>
