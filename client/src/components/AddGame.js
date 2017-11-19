@@ -5,9 +5,15 @@ import GoogleMapReact from 'google-map-react'
 import geocoder from 'geocoder'
 import cookie from 'react-cookies'
 import { connect } from 'react-redux'
+import DatePicker from 'react-datepicker';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 import { api } from '../config'
 import { getRooms } from '../actions/index'
+
+var vrImage = []
+var vrInputs = []
 
 class AddGame extends React.Component {
   constructor (props) {
@@ -19,6 +25,9 @@ class AddGame extends React.Component {
       lat: -6.260708,
       lng: 106.781617,
       zoom: 17,
+      startDate: '',
+      endDate: '',
+      vrImage: []
     }
   }
 
@@ -50,6 +59,10 @@ class AddGame extends React.Component {
   }
 
   createActivity(){
+    let vrImages = []
+    for(let i = 0; i < this.state.vrImage.length; i++){
+      vrImages.push(this.refs[i].value)
+    }
     let query = `
       mutation {
         createEvent(
@@ -57,14 +70,14 @@ class AddGame extends React.Component {
             tipe:"${this.state.isOnline}",
             name:"${this.state.name}",
             image_standard:"${this.state.image}",
-            image_vr:["https://firebasestorage.googleapis.com/v0/b/grayfox-dfa44.appspot.com/o/room360%2FIMG_1972.JPG?alt=media&token=22e402c1-1151-41d3-a01d-1538d2135b45"],
+            image_vr:${vrImages},
             location_lat:"${this.state.lat}",
             location_lng:"${this.state.lng}",
             location_name:"${this.state.location}",
             url:"${this.state.url}",
-            date_join_start:"2017-11-12",
-            date_join_end:"2017-11-12",
-            date_event:"2017-11-12",
+            date_join_start:${this.state.join_start}",
+            date_join_end:${this.state.join_end},
+            date_event:${new Date().toString()},
             descr:"${this.state.descr}",
             _organizer:"5a01f11ff6913448d2b92337"
           }){_id}
@@ -77,6 +90,15 @@ class AddGame extends React.Component {
     .then(res=>{
       this.props.getRooms()
       console.log(res);
+    })
+  }
+
+  addMore(e){
+    e.preventDefault()
+    let vrNums = this.state.vrImage.length
+    this.state.vrImage.push(vrNums)
+    this.setState({
+      vrImage: this.state.vrImage
     })
   }
 
@@ -98,6 +120,23 @@ class AddGame extends React.Component {
             <option value={"hackathon"}>Hackhaton</option>
           </select>
         </div>
+    <div className="form-group row">
+    <div className="col-md-12">
+      <label htmlFor="exampleInputEmail1">Select Date</label>
+    </div>
+    <div className="col-md-6">
+      <DatePicker
+        selected={this.state.startDate}
+        onChange={(e)=>this.setState({startDate:e})}
+      />
+    </div>
+    <div className="col-md-6">
+      <DatePicker
+        selected={this.state.endDate}
+        onChange={(e)=>this.setState({endDate:e})}
+      />
+    </div>
+    </div>
 <div className="form-group">
   <label htmlFor="exampleInputEmail1">Event Name</label>
   <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Activity Name"
@@ -120,8 +159,20 @@ class AddGame extends React.Component {
 </div>
 <div className="form-group">
   <label htmlFor="exampleInputPassword1">Image</label>
-  <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Image"
+  <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Copy Image URL Here"
   onChange={(e)=> this.setState({image: e.target.value})} />
+</div>
+<div className="form-group">
+  <label htmlFor="exampleInputPassword1">VR Image</label>
+  {this.state.vrImage.map((vr,i)=>
+    <input
+    key={i}
+    type="text"
+    className="form-control"
+    placeholder="Copy 360 Image URL Here"
+    ref={i} />
+  )}
+  <button className="btn btn-default" onClick={(e)=> this.addMore(e)}>Add More Image</button>
 </div>
 
 <div className="form-group">
@@ -135,6 +186,7 @@ class AddGame extends React.Component {
      <input
        type='text'
        onChange={(e)=> this.getLocation(e.target.value)}
+       placeholder="Search Place Here"
        />
      <img
        style={{width:20,height:20}}

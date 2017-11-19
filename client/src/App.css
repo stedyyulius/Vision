@@ -11,6 +11,10 @@
   max-width: 33px;
 }
 
+.date{
+  display: inline-block;
+}
+
 .rewards{
   margin-top: 20px;
   width: 100%;
