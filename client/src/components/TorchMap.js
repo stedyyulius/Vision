@@ -134,7 +134,7 @@ class TorchMap extends Component {
                     <b className="tooltip-detail">{k.name}</b> <br />
                     <img className="komsel tooltip-detail" src={k.image.standard} /> <br />
                     <hr />
-                    <span className="leader">{k.organizer}</span>
+                    <span className="leader">{k.organizer2}</span>
                     <a className="leader">{k.url}</a>
                       {/* {(k.participant.length === 0)
                         ? (<b className="tooltip-detail">No Member Yet</b>)
@@ -146,10 +146,10 @@ class TorchMap extends Component {
                     {(this.state.isJoin === i)
                       ? null
                       : <div className="tooltip-detail">
-                        <button className="btn btn-success"
+                        {/*<button className="btn btn-success"
                         onClick={()=> this.requestJoin(k._id,i)}>
                         Join
-                        </button>
+                        </button> */}
                         <button className="btn btn-primary" onClick={()=> window.open(`${vr}?${k._id}`)}>
                         Visit Vr
                         </button>

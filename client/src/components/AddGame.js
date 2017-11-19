@@ -22,8 +22,8 @@ class AddGame extends React.Component {
       access: null,
       category: null,
       cities: [],
-      lat: -6.260708,
-      lng: 106.781617,
+      lat: 37.487013,
+      lng: -122.125369,
       zoom: 17,
       startDate: '',
       endDate: '',
@@ -79,7 +79,7 @@ class AddGame extends React.Component {
             date_join_end:${this.state.join_end},
             date_event:${new Date().toString()},
             descr:"${this.state.descr}",
-            _organizer:"5a01f11ff6913448d2b92337"
+            _organizer2:${cookie.load('user').name}
           }){_id}
       }`
 
@@ -128,12 +128,14 @@ class AddGame extends React.Component {
       <DatePicker
         selected={this.state.startDate}
         onChange={(e)=>this.setState({startDate:e})}
+        placeholderText="Select Start Date"
       />
     </div>
     <div className="col-md-6">
       <DatePicker
         selected={this.state.endDate}
         onChange={(e)=>this.setState({endDate:e})}
+        placeholderText="Select End Date"
       />
     </div>
     </div>
