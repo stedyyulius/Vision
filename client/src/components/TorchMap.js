@@ -108,12 +108,12 @@ class TorchMap extends Component {
           }
          <div className="tooltip-detail">
          {(this.props.isKomsel && this.state.komsel.length > 0)
-           ?  (this.state.komsel.slice(0,5).map((k,i)=>
+           ?  (this.state.komsel.map((k,i)=>
               <Marker
                 key={i}
                 position={[+k.location.lat,+k.location.lng]}
                 icon={icon({
-                    iconUrl: k.image.standard || 'http://www.potepatilalumni.org/images/Event.png',
+                    iconUrl: k.image.standard || 'https://i.imgur.com/P7brLe1.png',
                     iconSize: [70, 70],
                     iconAnchor: [22, 94],
                     popupAnchor: [-3, -76],
