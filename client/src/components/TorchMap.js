@@ -28,7 +28,7 @@ var Me = icon({
 });
 
 const startLocation = [37.483999 + 0.0003, -122.147233 - 0.0004]
-const vr = `https://sarielab.github.io`
+const vr = `https://sarielab.github.io/vr`
 
 class TorchMap extends Component {
   constructor(props){
