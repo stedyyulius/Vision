@@ -142,7 +142,7 @@ class TorchMap extends Component {
                         onClick={()=> this.requestJoin(k._id,i)}>
                         Join
                         </button> */}
-                        <button className="btn btn-primary" onClick={()=> window.open(`${vr}?${k._id}`)}>
+                        <button className="btn btn-primary" onClick={()=> window.open(`${vr}/?id=${k._id}`)}>
                         Visit Vr
                         </button>
                         </div>
