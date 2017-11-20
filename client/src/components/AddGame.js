@@ -61,7 +61,7 @@ class AddGame extends React.Component {
   createActivity(){
     let vrImages = []
     for(let i = 0; i < this.state.vrImage.length; i++){
-      vrImages.push(this.refs[i].value)
+      vrImages.push(`"${this.refs[i].value}"`)
     }
     let query = `
       mutation {
@@ -75,11 +75,11 @@ class AddGame extends React.Component {
             location_lng:"${this.state.lng}",
             location_name:"${this.state.location}",
             url:"${this.state.url}",
-            date_join_start:${this.state.join_start}",
-            date_join_end:${this.state.join_end},
-            date_event:${new Date().toString()},
+            date_join_start:"${this.state.startDate}",
+            date_join_end:"${this.state.endDate}",
+            date_event:"${new Date().toString()}",
             descr:"${this.state.descr}",
-            _organizer2:${cookie.load('user').name}
+            organizer2:"${cookie.load('user').name}"
           }){_id}
       }`
 
